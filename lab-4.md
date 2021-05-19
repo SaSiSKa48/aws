@@ -16,6 +16,13 @@
 ### Launch Instance
 ```aws ec2 run-instances --image-id ami-09e67e426f25ce0d7 --count 1 --instance-type t2.micro --key-name michael.pem --subnet-id subnet-1e4b7e10```
 
+### Instaling Apache
+
+``` ssh -i KEYNAME ubuntu@IP | (yes) ```
+``` sudo apt-get update -y ```
+``` sudo apt-get install apache2 -y ```
+``` exit ```
+
 ### Create Custom Image from existing Instances
 ```aws ec2 create-image --instance-id i-0b12b574c721b4fr5 --name lab2-application-ami```
 
@@ -32,3 +39,11 @@
 
 ### Create Auto Scaling Group (ASG)
 ```aws autoscaling create-auto-scaling-group --auto-scaling-group-name lab2-application-asg --min-size 2 --max-size 2 --desired-capacity 2 --target-group-arns arn:aws:elasticloadbalancing:us-west-1:282301773767:targetgroup/MyTargetGroup/3d30af7c2745b15f --launch-configuration-name lab2-application-lc-v1.1 --vpc subnet-1e4b7e10,subnet-1f770b40```
+
+### Make changes
+``` ssh -i KEYNAME ubuntu@IP | (yes) ```
+``` sudo nano /var/www/html/index.html ```
+``` Внести зміни ```
+``` Ctrl + s ```
+``` Ctrl + x ```
+``` exit ```
