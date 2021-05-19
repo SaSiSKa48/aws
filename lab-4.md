@@ -24,21 +24,21 @@
 ``` exit ```
 
 ### Create Custom Image from existing Instances
-```aws ec2 create-image --instance-id i-0b12b574c721b4fr5 --name lab2-application-ami```
+```aws ec2 create-image --instance-id i-0b12b574c721b4fr5 --name lab4-application-ami```
 
 ### Create Target Group
-```aws elbv2 create-target-group --name lab2-application-tg --protocol HTTP --port 80 --vpc-id vpc-b61498cb```
+```aws elbv2 create-target-group --name lab4-application-tg --protocol HTTP --port 80 --vpc-id vpc-b61498cb```
 
 ### Create Listener
-```aws elbv2 create-listener --load-balancer-arn arn:aws:elasticloadbalancing:us-east-1:911064173354:loadbalancer/app/ELB-NAME/b8db373f4a351a31 --protocol HTTP --port 80 --default-actions Type=forward,TargetGroupArn=arn:aws:elasticloadbalancing:us-east-1:911064173354:targetgroup/lab2-application-tg/1d37e4648204f423```
+```aws elbv2 create-listener --load-balancer-arn arn:aws:elasticloadbalancing:us-east-1:911064173354:loadbalancer/app/ELB-NAME/b8db373f4a351a31 --protocol HTTP --port 80 --default-actions Type=forward,TargetGroupArn=arn:aws:elasticloadbalancing:us-east-1:911064173354:targetgroup/lab4-application-tg/1d37e4648204f423```
 
 ## Configuring ASG
 
 ### Create Launch Configuration
-```aws autoscaling create-launch-configuration --launch-configuration-name lab2-application-lc-v1.1 --image-id ami-02652141f7a8abead --instance-type t2.micro --security-groups sg-049be501169455332```
+```aws autoscaling create-launch-configuration --launch-configuration-name lab4-application-lc-v1.1 --image-id ami-02652141f7a8abead --instance-type t2.micro --security-groups sg-049be501169455332```
 
 ### Create Auto Scaling Group (ASG)
-```aws autoscaling create-auto-scaling-group --auto-scaling-group-name lab2-application-asg --min-size 2 --max-size 2 --desired-capacity 2 --target-group-arns arn:aws:elasticloadbalancing:us-west-1:282301773767:targetgroup/MyTargetGroup/3d30af7c2745b15f --launch-configuration-name lab2-application-lc-v1.1 --vpc subnet-1e4b7e10,subnet-1f770b40```
+```aws autoscaling create-auto-scaling-group --auto-scaling-group-name lab4-application-asg --min-size 2 --max-size 2 --desired-capacity 2 --target-group-arns arn:aws:elasticloadbalancing:us-west-1:282301773767:targetgroup/MyTargetGroup/3d30af7c2745b15f --launch-configuration-name lab4-application-lc-v1.1 --vpc subnet-1e4b7e10,subnet-1f770b40```
 
 ### Make changes
 ``` ssh -i KEYNAME ubuntu@IP | (yes) ```
