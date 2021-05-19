@@ -46,6 +46,3 @@
 
 ### Create a Service
 ```aws ecs create-service --cluster application-cluster --service-name my-service --task-definition sample-fargate:1 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-1e4b7e10],securityGroups=[sg-04887b2e6a7fe81cc],assignPublicIp=ENABLED}"```
-
-### Get Container Info
-```ecs-cli ps --cluster application-cluster```
