@@ -1,5 +1,5 @@
 ### Create new Security Group for Load Balancer
-```aws ec2 create-security-group --group-name lab4-application-sg --description "Security group for load balancer" --vpc-id vpc-b61498cb```
+```aws ec2 create-security-group --group-name lab4-loadbalancer-sg --description "Security group for load balancer" --vpc-id vpc-b61498cb```
 
 ### Set Up HTTP, Port from anywhere for Our Security Group
 ```aws ec2 authorize-security-group-ingress --group-id sg-05681fdf57bb23597 --protocol tcp --port 80 --cidr 0.0.0.0/0```
@@ -8,7 +8,7 @@
 ```aws elbv2 create-load-balancer --name ELB-NAME --subnets subnet-1e4b7e10 subnet-1f770b40 --security-groups sg-05681fdf57bb23597```
 
 ### Create Security Group for Instances to Filter All Traffic
-```aws ec2 create-security-group --group-name lab4-applicationsg --description "Security group for application" --vpc-id vpc-b61498cb```
+```aws ec2 create-security-group --group-name lab4-application-sg --description "Security group for application" --vpc-id vpc-b61498cb```
 
 ### Set Up HTTP only from ELB
 ```aws ec2 authorize-security-group-ingress --group-id sg-049be501169455332 --port 80 --protocol tcp --source-group sg-05681fdf57bb23597```
